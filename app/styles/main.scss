@@ -1,0 +1,50 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+// endbower
+
+#chart {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgb(236, 236, 236);
+}
+
+circle,
+path {
+	opacity: .75;
+}
+
+
+.bar {
+	height: 10px;
+	background-color: blue;
+	margin: 0;
+	border-bottom: 1px solid white;
+}
+
+path {
+	stroke: white;
+	stroke-width: 2;
+}
+
+.plot{
+	fill: none;
+	stroke: #aec7e8;
+	stroke-width: 2;
+}
+
+.area {
+	stroke: none;
+	fill: steelblue;
+}
+
+.area-chart-point {
+	stroke: white;
+	stroke-width: 2;
+	fill: steelblue;
+}
