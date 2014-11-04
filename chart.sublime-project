@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+            "folder_exclude_patterns":
+            [
+                "node_modules",
+                // "bower_components",
+                ".sass-cache",
+                ".tmp",
+            ],
+            "file_exclude_patterns": ["*.sublime-*"],
+			"follow_symlinks": true,
+			"path": "."
+		}
+	]
+}

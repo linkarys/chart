@@ -43,8 +43,20 @@ path {
 	fill: steelblue;
 }
 
+.circle,
+.rect,
 .area-chart-point {
 	stroke: white;
 	stroke-width: 2;
 	fill: steelblue;
+}
+
+.concat-line {
+	stroke: steelblue;
+	stroke-width: 2;
+	fill: none;
+}
+
+.circle {
+	opacity: 1;
 }
