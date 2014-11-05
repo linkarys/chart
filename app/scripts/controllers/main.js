@@ -12,30 +12,30 @@ angular.module('yoApp')
 	 * Bubble
 	 * ----------------------------------------------------------------------------
 	 */
-
-	var n = 0;
-	var bars = d3.select('#chart').append('g')
-		.attr('transform', 'translate(600, 20)').selectAll('.bar');
-	function update() {
-		n++;
-		n = n > 6 ? 1 : n;
-		var data = d3.range(n);
-		bars = bars.data(data);
-		bars.enter().append('circle').attr('class', 'bar')
-			.attr('cx', function(d, i) {
-				return d * 6 * i;
-			})
-			.attr('cy', function(d, i) {
-				return 300 - d * 6 * i;
-			})
-			.attr('r', function(d, i) {
-				return i * d * 2;
-			})
-			.style('opacity', '.3');
-		bars.exit().remove();
-	}
-	setInterval(update, 2000);
-
+	(function() {
+		var n = 0;
+		var bars = d3.select('#chart').append('g')
+			.attr('transform', 'translate(600, 20)').selectAll('.bar');
+		function update() {
+			n++;
+			n = n > 6 ? 1 : n;
+			var data = d3.range(n);
+			bars = bars.data(data);
+			bars.enter().append('circle').attr('class', 'bar')
+				.attr('cx', function(d, i) {
+					return d * 6 * i;
+				})
+				.attr('cy', function(d, i) {
+					return 300 - d * 6 * i;
+				})
+				.attr('r', function(d, i) {
+					return i * d * 2;
+				})
+				.style('opacity', '.3');
+			bars.exit().remove();
+		}
+		setInterval(update, 2000);
+	})();
 
 	/**
 	 * Star
@@ -63,7 +63,7 @@ angular.module('yoApp')
 		.innerRadius(30).outerRadius(function(d, i) {
 			return 30 + (rainbow .length - i) * 20;
 		})
-		.startAngle(Math.PI / 2).endAngle(Math.PI * 3 / 2);
+		.startAngle(Math.PI / 4.5).endAngle(Math.PI * 5.5 / 4);
 
 
 	chart
@@ -266,21 +266,22 @@ angular.module('yoApp')
 	 * ----------------------------------------------------------------------------
 	 */
 
-	 var radialChart = chart.append('g').attr('transform', 'translate(400, 650)');
-	 var lineRadial = d3.svg.line.radial();
+	(function() {
+		var radialChart = chart.append('g').attr('transform', 'translate(480, 660)');
+		var lineRadial = d3.svg.line.radial();
 
-	 var maxR = 150, rot = 10;
-	 n = 100;
-	 data = d3.range(n).map(function(d) {
-	 	var t = d / (n - 1);
-	 	return [t * maxR, t * Math.PI * rot * 2];
-	 });
+		var maxR = 150, rot = 10;
+		var n = 100;
+		var data = d3.range(n).map(function(d) {
+			var t = d / (n - 1);
+			return [t * maxR, t * Math.PI * rot * 2];
+		});
 
-	 radialChart.datum(data)
-	 	.append('path')
-	 	.attr({
-	 		d: lineRadial,
-	 		class: 'concat-line'
-	 	});
-
+		radialChart.datum(data)
+			.append('path')
+			.attr({
+				d: lineRadial,
+				class: 'concat-line'
+			});
+	})();
 });
