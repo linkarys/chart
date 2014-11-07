@@ -178,14 +178,6 @@ angular.module('yoApp')
 			[ 2.7 /* A -> D */, 0 /* B -> D */, 1 /* C -> D */, 0 /* D -> D */]
 		]; // `C` really likes herself
 
-
-/**
- *
- *
- *
- * ----------------------------------------------------------------------------
- */
-
 	var chord = d3.layout.chord().matrix(matrix);
 
 	var chordChart = chart.append('g')

@@ -32,7 +32,7 @@ path {
 	stroke-width: 2;
 }
 
-.plot{
+.plot {
 	fill: none;
 	stroke: #aec7e8;
 	stroke-width: 2;
@@ -51,6 +51,11 @@ path {
 	fill: steelblue;
 }
 
+.line {
+	fill: steelblue;
+	opacity: .8
+}
+
 .concat-line {
 	stroke: steelblue;
 	stroke-width: 2;
@@ -59,4 +64,20 @@ path {
 
 .circle {
 	opacity: 1;
+}
+
+$tick-color: #7b7a7a;
+
+.domain {
+	stroke: $tick-color;
+	fill: none;
+	stroke-width: 2;
+}
+
+.tick {
+	line {
+		stroke: $tick-color;
+		fill: none;
+		stroke-width: 2;
+	}
 }

@@ -1,49 +1,7 @@
 'use strict';
 
 angular.module('yoApp')
-.controller('AboutCtrl', function ($scope) {
-
-	/**
-	 * Utils / Global
-	 * ----------------------------------------------------------------------------
-	 */
-
-	var chart = d3.select('#chart');
-	var colors = d3.scale.category20();
-	var translate = (function(offsetX, offsetY) {
-		offsetX = offsetX || 200;
-		offsetY = offsetY || 200;
-
-		var
-			winWidth = 1324,
-			startX = 30,
-			startY = 30,
-			x = startX - offsetX,
-			y = startY;
-
-		return function(tweakX, tweakY){
-			tweakX = tweakX || 0;
-			tweakY = tweakY || 0;
-
-			x += offsetX;
-			if (x + offsetX + tweakX > winWidth) {
-				x = startX;
-				y += offsetY;
-
-				if (x + offsetX < winWidth) {
-					tweakX = 0;
-				}
-			}
-
-			return 'translate(' + (x + tweakX) + ', ' + (y + tweakY) + ')';
-		};
-	})();
-
-	chart.get = function(tweakX, tweakY) {
-		var newChart = chart.append('g').attr('transform', translate(tweakX, tweakY));
-		return newChart;
-	};
-
+.controller('AboutCtrl', function ($scope, chart, colors, mdu) {
 
 	/**
 	 * Rainbow
@@ -216,29 +174,20 @@ angular.module('yoApp')
 		var y = function(d) {return height - base - d.y;};
 
 		// area
-		var area = d3.svg.area()
-			.x(x)
-			.y0(height)
-			.y1(y);
-
 		areaChart
 			.datum(data)
 			.append('path')
 			.attr({
-				d: area,
+				d: d3.svg.area().x(x).y0(height).y1(y),
 				class: 'area'
 			});
 
 		// line
-		var line = d3.svg.line()
-			.x(x)
-			.y(y);
-
 		areaChart
 			.datum(data)
 			.append('path')
 			.attr({
-				d: line,
+				d: d3.svg.line().x(x).y(y),
 				class: 'concat-line'
 			});
 
@@ -255,5 +204,34 @@ angular.module('yoApp')
 				class: 'circle'
 			});
 	})();
+
+	/**
+	 * Cool line
+	 * ----------------------------------------------------------------------------
+	 */
+
+	mdu(function() {
+		var clCharts = chart.get(10000);
+
+		var data = d3.range(0, 300, 10).map(function(yOffset) {
+			return d3.range(0, 700, 10).map(function(x) {
+				var y = x;
+				y = (x < 230 || x > 470) ? 50 : 500;
+				return [x, yOffset - Math.random() * Math.random() * y / 10];
+			});
+		});
+
+		var line = d3.svg.line()
+			.x(function(d) {return d[0];})
+			.y(function(d) {return d[1];})
+			.interpolate('basic');
+
+		clCharts.selectAll()
+			.data(data).enter()
+			.append('path').attr({
+				d: line,
+				class: 'line'
+			});
+	});
 
 });

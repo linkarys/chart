@@ -25,6 +25,14 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/helpers', {
+        templateUrl: 'views/helpers.html',
+        controller: 'HelpersCtrl'
+      })
+      .when('/scale', {
+        templateUrl: 'views/scale.html',
+        controller: 'ScaleCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
